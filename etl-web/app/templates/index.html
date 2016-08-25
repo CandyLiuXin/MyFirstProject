@@ -1,0 +1,68 @@
+{% extends "etl-base.html" %}
+
+{% block title %}ETL-Admin{% endblock %}
+{% block styles %}
+{{super()}}
+<link href="{{url_for('static', filename='bootstrap-treeview.min.css')}}" rel="stylesheet">
+<link href="{{url_for('static', filename='jquery.toolbar.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="{{url_for('static', filename='bootstrap-treeview.min.js')}}"></script>
+<script src="{{url_for('static', filename='jquery.toolbar.min.js')}}"></script>
+<script src="{{url_for('static', filename='juicer-min.js')}}"></script>
+<script src="{{url_for('static', filename='index.js')}}"></script>
+{% endblock scripts %}
+{% block page_content %}
+<div class="row">
+    <div class="col-sm-4" style="height: 700px;overflow: auto;">
+        <div id="treeview1" class=""></div>
+    </div>
+    <div class="col-sm-8" id="div_sys_job_info" style="display: none;">
+      <div class="panel panel-default panel-primary">
+        <div class="panel-heading">
+          <span param="job_info_title"></span>
+        </div>
+        <div class="panel-body ">
+          <div>
+            <table id="tab_job_info" class="table table-hover">
+            </table>
+            <div id="job_tools" style="display: none; text-align: right;">
+              <input type="hidden" id="job_sys_id" name="job_sys_id"/>
+              <button type="button" class="btn btn-sm btn-primary" id="btn_show_deps">Show Dependecy</button>
+              <button type="button" class="btn btn-sm btn-primary" id="btn_job_logs">Show Logs</button>
+              <button type="button" class="btn btn-sm btn-primary">Show Script</button>
+              <button type="button" class="btn btn-sm btn-primary">Edit Job</button>
+              <button type="button" class="btn btn-sm btn-danger">Force Start Job</button>
+            </div>
+            <div id="sys_tools" style="display: none; text-align: right;">
+              <button type="button" class="btn btn-sm btn-primary">Add Job</button>
+              <button type="button" class="btn btn-sm btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Button trigger modal -->
+
+    <!-- job log dialog -->
+    <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel"><span param="job_info_title"></span>&nbsp;Logs</h4>
+          </div>
+          <div class="modal-body" style="height: 600px;overflow: auto;">
+            <table id="tab_job_log" class="table table-hover .table-condensed">
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+{% endblock %}

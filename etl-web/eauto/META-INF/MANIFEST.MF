@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: ETLAdmin
-Created-By: Jet Wu (NCR, Taiwan)
-
